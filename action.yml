@@ -1,0 +1,42 @@
+name: 'Use MongoDB in Github Actions'
+description: 'Start a MongoDB (on default port 27017 or a defined port)'
+
+branding:
+  icon: 'database'
+  color: 'green'
+
+inputs:
+  mongodb-version:
+    description: 'MongoDB version (default "latest"). Possible Versions (https://hub.docker.com/r/mongocamp/mongodb/tags) '
+    required: true
+    default: 'latest'
+
+  mongodb-replica-set:
+    description: 'Name of MongoDB replica set (no replica set by default)'
+    required: false
+    default: ''
+
+  mongodb-port:
+    description: 'Port of MongoDB (default 27017)'
+    required: false
+    default: 27017
+
+  mongodb-username:
+    description: 'Root username of MongoDB (default: root)'
+    required: false
+    default: 'root'
+
+  mongodb-pwd:
+    description: 'MongoDB root password (default: none)'
+    required: false
+    default: 'NONE'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.mongodb-version }}
+    - ${{ inputs.mongodb-replica-set }}
+    - ${{ inputs.mongodb-port }}
+    - ${{ inputs.mongodb-username }}
+    - ${{ inputs.mongodb-pwd }}
