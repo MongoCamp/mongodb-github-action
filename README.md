@@ -30,7 +30,7 @@ jobs:
 
 
 ### Using a Custom MongoDB Port
-The following example starts a MongoDB server on port `4711`:
+The following sample starts a MongoDB server on port `4711`:
 
 ```yaml
 name: Run tests
@@ -58,10 +58,8 @@ jobs:
 ```
 
 
-### With a Replica Set (MongoDB `--replSet` Flag)
-You can run your tests against a MongoDB replica set by adding the `mongodb-replica-set: your-replicate-set-name` input in your action’s workflow. The value for `mongodb-replica-set` defines the name of your replica set. Replace `your-replicate-set-name` with the replica set name you want to use in your tests.
-
-The following example uses the replica set name `test-rs`:
+### With a Replica Set
+The following sample uses the replica set name `your-replica-set`:
 
 ```yaml
 name: Run tests
@@ -89,7 +87,10 @@ jobs:
 ```
 
 
-### With Authentication (MongoDB `--auth` Flag)
+### With Authentication
+The following sample uses the username `user` and the password `your-pwd`:
+
+
 ```yaml
 name: Run tests
 
@@ -110,6 +111,8 @@ jobs:
         uses: MongoCamp/mongodb-github-action@0.5.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-username: user
+          mongodb-pwd: your-pwd
 
       - run: curl http://localhost:27017
 ```
