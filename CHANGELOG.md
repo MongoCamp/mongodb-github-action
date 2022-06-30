@@ -5,6 +5,7 @@
 
 * disable fail-fast ([2499503](https://github.com/MongoCamp/mongodb-github-action/commit/24995038451fc0efc110b06b9c2ba83f706a20e7))
 * disable fail-fast ([9405c2b](https://github.com/MongoCamp/mongodb-github-action/commit/9405c2b0e18c152764a05382196eb0db869d5fca))
+* pipe conventional releaser to true ([6fb86d0](https://github.com/MongoCamp/mongodb-github-action/commit/6fb86d09d29a933fc5e07f632bf1da46d5a11fd4))
 * Removed not used values ([90fcca5](https://github.com/MongoCamp/mongodb-github-action/commit/90fcca5babcd13f0e609c593d5e13670eb1544ce))
 * Use own port fixed ([46b714f](https://github.com/MongoCamp/mongodb-github-action/commit/46b714fcb2aad662bca5ebb8c8481f8e55454d91))
 * Use own port fixed ([1107ca3](https://github.com/MongoCamp/mongodb-github-action/commit/1107ca385635ec114bd95ee3f9188b8312adc0a1))
