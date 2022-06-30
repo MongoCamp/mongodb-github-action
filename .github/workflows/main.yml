@@ -1,19 +1,37 @@
 name: Run MongoDB Server
 on: [push, pull_request]
 jobs:
-  mongodb-action:
+  mongodb-start-server:
     name: Run MongoDB Server v${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: ['4.4.14', '5.0.9']
+        mongodb-version: ['4.4.14', '5.0.9', 'latest']
+        mongodb-port: ['27017', '12345']
+        mongodb-replica-set: ['', 'my-replica']
+        mongodb-username: ['root', 'my-pwd']
+        mongodb-pwd: ['NONE', '', 'crazy-pwd']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Start  Server
+      - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
         uses: ./
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-port: ${{ matrix.mongodb-port }}
+          mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
+          mongodb-username: ${{ matrix.mongodb-username }}
+          mongodb-pwd: ${{ matrix.mongodb-pwd }}
+       - name: Check Server running
+         run: curl http://localhost:${{ matrix.mongodb-port }}
+  release:
+    needs: mongodb-start-server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v3.0.0
+        with:
+          fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.1
         with:

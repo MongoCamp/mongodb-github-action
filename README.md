@@ -1,3 +1,5 @@
+![MongoCamp Logo](https://server.mongocamp.dev/logo_with_text_right.png)
+
 ## Introduction
 This GitHub Action starts a MongoDB server with the default port `27017`. You can customize the port using the `mongodb-port` input.
 
