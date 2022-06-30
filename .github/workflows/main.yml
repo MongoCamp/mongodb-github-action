@@ -109,4 +109,4 @@ jobs:
       run: |
         git config --global user.email "ci@mongocamp.dev"
         git config --global user.name "MongoCamp CI"
-        conventional-github-releaser -p conventionalcommits -r 0 -n ./changelog/config.js
+        conventional-github-releaser -p conventionalcommits -r 0 -n ./changelog/config.js | true
