@@ -12,47 +12,47 @@ jobs:
         mongodb-username: ['root', 'my-pwd']
         mongodb-pwd: ['NONE', '', 'crazy-pwd']
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
-        uses: ./
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
-          mongodb-port: ${{ matrix.mongodb-port }}
-          mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
-          mongodb-username: ${{ matrix.mongodb-username }}
-          mongodb-pwd: ${{ matrix.mongodb-pwd }}
-       - name: Check Server running
-         run: curl http://localhost:${{ matrix.mongodb-port }}
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
+      uses: ./
+      with:
+        mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-port: ${{ matrix.mongodb-port }}
+        mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
+        mongodb-username: ${{ matrix.mongodb-username }}
+        mongodb-pwd: ${{ matrix.mongodb-pwd }}
+    - name: Check Server running
+      run: curl http://localhost:${{ matrix.mongodb-port }}
   release:
     needs: mongodb-start-server
     runs-on: ubuntu-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v3.0.0
-        with:
-          fetch-depth: 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.1
-        with:
-          version: 6.0.2
-      - name: install conventional-changelog-cli
-        run: pnpm install -g conventional-changelog-cli
-      - name: install conventional-github-release
-        run: pnpm install -g conventional-github-releaser
-      - name: Generate ChangeLog
-        run: conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0 -n ./changelog/config.js
-      - name: Push Changes of ChangeLog
-        run: |
-          git config --global user.email "ci@mongocamp.dev"
-          git config --global user.name "MongoCamp CI"
-          git add CHANGELOG.md
-          git commit -a 'Generated ChangeLog'
-          git push
-      - name: Release
-        env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
-        run: |
-          git config --global user.email "ci@mongocamp.dev"
-          git config --global user.name "MongoCamp CI"
-          conventional-github-releaser -p conventionalcommits -r 0 -n ./changelog/config.js
+    - name: Git Checkout
+      uses: actions/checkout@v3.0.0
+      with:
+        fetch-depth: 0
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.2.1
+      with:
+        version: 6.0.2
+    - name: install conventional-changelog-cli
+      run: pnpm install -g conventional-changelog-cli
+    - name: install conventional-github-release
+      run: pnpm install -g conventional-github-releaser
+    - name: Generate ChangeLog
+      run: conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0 -n ./changelog/config.js
+    - name: Push Changes of ChangeLog
+      run: |
+        git config --global user.email "ci@mongocamp.dev"
+        git config --global user.name "MongoCamp CI"
+        git add CHANGELOG.md
+        git commit -a 'Generated ChangeLog'
+        git push
+    - name: Release
+      env:
+        CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+      run: |
+        git config --global user.email "ci@mongocamp.dev"
+        git config --global user.name "MongoCamp CI"
+        conventional-github-releaser -p conventionalcommits -r 0 -n ./changelog/config.js
