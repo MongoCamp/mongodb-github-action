@@ -7,24 +7,16 @@ jobs:
     strategy:
       matrix:
         mongodb-version: ['4.4.14', '5.0.9', 'latest']
-        mongodb-port: ['27017', '12345']
-        mongodb-replica-set: ['', 'my-replica']
-        mongodb-username: ['root', 'my-pwd']
-        mongodb-pwd: ['NONE', '', 'crazy-pwd']
       fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
+    - name: Start Server ${{ matrix.mongodb-version }}
       uses: ./
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-port: ${{ matrix.mongodb-port }}
-        mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
-        mongodb-username: ${{ matrix.mongodb-username }}
-        mongodb-pwd: ${{ matrix.mongodb-pwd }}
     - name: Check Server running
-      run: curl http://localhost:${{ matrix.mongodb-port }}
+      run: curl http://localhost:27017
   mongodb-start-server-auth:
     name: Run MongoDB Server (auth) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
@@ -36,16 +28,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
+    - name: Start Server ${{ matrix.mongodb-version }}
       uses: ./
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-port: ${{ matrix.mongodb-port }}
-        mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
         mongodb-username: ${{ matrix.mongodb-username }}
         mongodb-pwd: ${{ matrix.mongodb-pwd }}
     - name: Check Server running
-      run: curl http://localhost:${{ matrix.mongodb-port }}
+      run: curl http://localhost:27017
   mongodb-start-server-replica:
     name: Run MongoDB Server (replica) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
@@ -60,12 +50,9 @@ jobs:
       uses: ./
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-port: ${{ matrix.mongodb-port }}
         mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
-        mongodb-username: ${{ matrix.mongodb-username }}
-        mongodb-pwd: ${{ matrix.mongodb-pwd }}
     - name: Check Server running
-      run: curl http://localhost:${{ matrix.mongodb-port }}
+      run: curl http://localhost:27017
   mongodb-start-server-port:
     name: Run MongoDB Server (with Port) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
@@ -76,13 +63,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
+      - name: Start Server ${{ matrix.mongodb-version }}
         uses: ./
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-port: ${{ matrix.mongodb-port }}
-          mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
-          mongodb-username: ${{ matrix.mongodb-username }}
           mongodb-pwd: ${{ matrix.mongodb-pwd }}
       - name: Check Server running
         run: curl http://localhost:${{ matrix.mongodb-port }}
