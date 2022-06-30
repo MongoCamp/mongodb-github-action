@@ -98,7 +98,7 @@ jobs:
         git config --global user.email "ci@mongocamp.dev"
         git config --global user.name "MongoCamp CI"
         git add CHANGELOG.md
-        git commit -a 'Generated ChangeLog'
+        git commit 'Generated ChangeLog'
         git push
     - name: Release
       env:
