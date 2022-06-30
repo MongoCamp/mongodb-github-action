@@ -1,7 +1,7 @@
 name: Run MongoDB Server
 on: [push, pull_request]
 jobs:
-  mongodb-start-server-default:
+  start-default:
     name: Run MongoDB Server (default) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -17,7 +17,7 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
     - name: Check Server running
       run: curl http://localhost:27017
-  mongodb-start-server-auth:
+  start-auth:
     name: Run MongoDB Server (auth) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -36,7 +36,7 @@ jobs:
         mongodb-pwd: ${{ matrix.mongodb-pwd }}
     - name: Check Server running
       run: curl http://localhost:27017
-  mongodb-start-server-replica:
+  start-replica:
     name: Run MongoDB Server (replica) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -53,7 +53,7 @@ jobs:
         mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
     - name: Check Server running
       run: curl http://localhost:27017
-  mongodb-start-server-port:
+  start-port:
     name: Run MongoDB Server (with Port) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -73,10 +73,10 @@ jobs:
         run: curl http://localhost:${{ matrix.mongodb-port }}
   release:
     needs:
-      - mongodb-start-server-default
-      - mongodb-start-server-auth
-      - mongodb-start-server-replica
-      - mongodb-start-server-port
+      - start-default
+      - start-auth
+      - start-replica
+      - start-port
     runs-on: ubuntu-latest
     steps:
     - name: Git Checkout

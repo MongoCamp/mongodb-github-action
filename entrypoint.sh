@@ -18,7 +18,7 @@ echo "Waiting for MongoDB to accept connections"
 sleep 1
 TIMER=0
 
-until docker exec --tty mongodb mongo --port $MONGODB_PORT --eval "db.serverStatus()" # &> /dev/null
+until docker exec --tty mongodb mongo --port 27017 --eval "db.serverStatus()" # &> /dev/null
 do
   sleep 1
   echo "."
