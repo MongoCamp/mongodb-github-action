@@ -1,4 +1,18 @@
-## [0.5.0](https://github.com/MongoCamp/mongodb-github-action/compare/0.7.0...0.5.0) (2022-06-30)
+## [1.0.0](https://github.com/MongoCamp/mongodb-github-action/compare/0.7.0...1.0.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* disable fail-fast ([2499503](https://github.com/MongoCamp/mongodb-github-action/commit/24995038451fc0efc110b06b9c2ba83f706a20e7))
+* disable fail-fast ([9405c2b](https://github.com/MongoCamp/mongodb-github-action/commit/9405c2b0e18c152764a05382196eb0db869d5fca))
+* Removed not used values ([90fcca5](https://github.com/MongoCamp/mongodb-github-action/commit/90fcca5babcd13f0e609c593d5e13670eb1544ce))
+* Use own port fixed ([46b714f](https://github.com/MongoCamp/mongodb-github-action/commit/46b714fcb2aad662bca5ebb8c8481f8e55454d91))
+* Use own port fixed ([1107ca3](https://github.com/MongoCamp/mongodb-github-action/commit/1107ca385635ec114bd95ee3f9188b8312adc0a1))
+
+
+### Features
+
+* Added Test for workflow ([3ff1611](https://github.com/MongoCamp/mongodb-github-action/commit/3ff1611a06be7e83cf0289492d04a98263cef5d4))
 
 ## [0.7.0](https://github.com/MongoCamp/mongodb-github-action/compare/0.6.0...0.7.0) (2022-06-29)
 
