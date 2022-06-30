@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Start MongoDB
-      uses: MongoCamp/mongodb-github-action@0.5.0
+      uses: MongoCamp/mongodb-github-action@1.0.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
 
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Start MongoDB
-        uses: MongoCamp/mongodb-github-action@0.5.0
+        uses: MongoCamp/mongodb-github-action@1.0.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-port: 4711
@@ -80,7 +80,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Start MongoDB
-        uses: MongoCamp/mongodb-github-action@0.5.0
+        uses: MongoCamp/mongodb-github-action@1.0.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-replica-set: your-replica-set
@@ -110,7 +110,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Start MongoDB
-        uses: MongoCamp/mongodb-github-action@0.5.0
+        uses: MongoCamp/mongodb-github-action@1.0.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
           mongodb-username: user
