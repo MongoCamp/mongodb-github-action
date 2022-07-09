@@ -1,3 +1,12 @@
+## [1.1.0](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.1...1.1.0) (2022-07-09)
+
+### [1.0.1](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.0...1.0.1) (2022-07-09)
+
+
+### Bug Fixes
+
+* password setting ([1c91306](https://github.com/MongoCamp/mongodb-github-action/commit/1c913061c9844f84d06c7fb91648ede447fb4d02))
+
 ## [1.0.0](https://github.com/MongoCamp/mongodb-github-action/compare/0.7.0...1.0.0) (2022-06-30)
 
 
