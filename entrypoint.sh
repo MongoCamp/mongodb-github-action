@@ -12,7 +12,7 @@ echo "* port [$MONGODB_PORT]"
 echo "* version [$MONGODB_VERSION]"
 echo "* replica_set [$MONGODB_REPLICA_SET]"
 echo "* credentials [$MONGODB_USERNAME:$MONGODB_PWD]"
-docker run --name mongodb --publish $MONGODB_PORT:27017 -e MONGO_ROOT_USERNAME=$MONGODB_USERNAME -e MONGO_ROOT_USERNAME=$MONGODB_PWD -e MONGO_REPLICA_SET_NAME=$MONGODB_REPLICA_SET --detach mongocamp/mongodb:$MONGODB_VERSION
+docker run --name mongodb --publish $MONGODB_PORT:27017 -e MONGO_ROOT_USERNAME=$MONGODB_USERNAME -e MONGO_ROOT_PWD=$MONGODB_PWD -e MONGO_REPLICA_SET_NAME=$MONGODB_REPLICA_SET --detach mongocamp/mongodb:$MONGODB_VERSION
 
 echo "Waiting for MongoDB to accept connections"
 sleep 1
