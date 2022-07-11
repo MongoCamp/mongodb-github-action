@@ -22,15 +22,17 @@ jobs:
       env:
         mongodb-version: ${{ matrix.mongodb-version }}
         mongodb-port: 27017
-        mongodb-username: root
-        mongodb-replica-set: NONE
+        mongodb-username: 'root'
+        mongodb-pwd: 'NONE'
+        mongodb-replica-set: ''
       run: cd docker-mongodb/test; sbt test;
 
   start-all:
-    name: Run MongoDB Server (auth) ${{ matrix.mongodb-version }}
+    name: Run MongoDB Server ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        mongodb-version: [ '4.4', '5.0', 'latest' ]
         mongodb-port: [ '27017', '4711' ]
         mongodb-username: [ 'root', 'test' ]
         mongodb-pwd: [ 'NONE', 'hello-world' ]
