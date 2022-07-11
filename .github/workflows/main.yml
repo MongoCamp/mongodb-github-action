@@ -17,7 +17,7 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
     - name: Checkout Tests
-      run: git clone git@github.com:MongoCamp/docker-mongodb.git
+      run: git clone https://github.com/MongoCamp/docker-mongodb.git
     - name: Check Server
       env:
         mongodb-version: ${{ matrix.mongodb-version }}
@@ -46,7 +46,8 @@ jobs:
         mongodb-username: ${{ matrix.mongodb-username }}
         mongodb-pwd: ${{ matrix.mongodb-pwd }}
     - name: Checkout Tests
-      run: git clone git@github.com:MongoCamp/docker-mongodb.git
+      run: git clone https://github.com/MongoCamp/docker-mongodb.git
+
     - name: Check Server
       env:
         mongodb-version: ${{ matrix.mongodb-version }}
