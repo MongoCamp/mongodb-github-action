@@ -1,12 +1,13 @@
 name: Run MongoDB Server
 on: [push, pull_request]
 jobs:
+
   start-default:
     name: Run MongoDB Server (default) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: ['4.4.14', '5.0.9', 'latest']
+        mongodb-version: ['4.4', '5.0', 'latest']
       fail-fast: false
     steps:
     - name: Checkout
@@ -15,16 +16,25 @@ jobs:
       uses: ./
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-    - name: Check Server running
-      run: curl http://localhost:27017
-  start-auth:
+    - name: Checkout Tests
+      run: git clone git@github.com:MongoCamp/docker-mongodb.git
+    - name: Check Server
+      env:
+        mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-port: 27017
+        mongodb-username: root
+        mongodb-replica-set: NONE
+      run: cd docker-mongodb/test; sbt test;
+
+  start-all:
     name: Run MongoDB Server (auth) ${{ matrix.mongodb-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: ['4.4.14', '5.0.9', 'latest']
-        mongodb-username: ['root', 'my-pwd']
-        mongodb-pwd: ['NONE', '', 'crazy-pwd']
+        mongodb-port: [ '27017', '4711' ]
+        mongodb-username: [ 'root', 'test' ]
+        mongodb-pwd: [ 'NONE', 'hello-world' ]
+        mongodb-replica-set: [ '', 'my-replication' ]
       fail-fast: false
     steps:
     - name: Checkout
@@ -35,51 +45,21 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
         mongodb-username: ${{ matrix.mongodb-username }}
         mongodb-pwd: ${{ matrix.mongodb-pwd }}
-    - name: Check Server running
-      run: curl http://localhost:27017
-  start-replica:
-    name: Run MongoDB Server (replica) ${{ matrix.mongodb-version }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        mongodb-version: ['4.4.14', '5.0.9', 'latest']
-        mongodb-replica-set: ['my-replica']
-      fail-fast: false
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Start Server ${{ matrix.mongodb-version }} Port ${{ matrix.mongodb-port }}
-      uses: ./
-      with:
+    - name: Checkout Tests
+      run: git clone git@github.com:MongoCamp/docker-mongodb.git
+    - name: Check Server
+      env:
         mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-port: ${{ matrix.mongodb-port }}
+        mongodb-username: ${{ matrix.mongodb-username }}
+        mongodb-pwd: ${{ matrix.mongodb-pwd }}
         mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
-    - name: Check Server running
-      run: curl http://localhost:27017
-  start-port:
-    name: Run MongoDB Server (with Port) ${{ matrix.mongodb-version }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        mongodb-version: ['4.4.14', '5.0.9', 'latest']
-        mongodb-port: ['12345']
-      fail-fast: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Start Server ${{ matrix.mongodb-version }}
-        uses: ./
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
-          mongodb-port: ${{ matrix.mongodb-port }}
-          mongodb-pwd: ${{ matrix.mongodb-pwd }}
-      - name: Check Server running
-        run: curl http://localhost:${{ matrix.mongodb-port }}
+      run: cd docker-mongodb/test; sbt test;
+
   release:
     needs:
       - start-default
-      - start-auth
-      - start-replica
-      - start-port
+      - start-all
     runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
