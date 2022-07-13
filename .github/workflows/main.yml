@@ -45,8 +45,10 @@ jobs:
       uses: ./
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-port: ${{ matrix.mongodb-port }}
         mongodb-username: ${{ matrix.mongodb-username }}
         mongodb-pwd: ${{ matrix.mongodb-pwd }}
+        mongodb-replica-set: ${{ matrix.mongodb-replica-set }}
     - name: Checkout Tests
       run: git clone https://github.com/MongoCamp/docker-mongodb.git
 
