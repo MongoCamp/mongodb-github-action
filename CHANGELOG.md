@@ -1,6 +1,4 @@
-## [1.1.0](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.1...1.1.0) (2022-07-09)
-
-### [1.0.1](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.0...1.0.1) (2022-07-09)
+## [1.1.0](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.0...1.1.0) (2022-07-09)
 
 
 ### Bug Fixes
