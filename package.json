@@ -1,7 +1,7 @@
 {
   "name": "@mongocamp/mongodb-github-action",
   "description": "MongoDB GitHub Action",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "QuadStingray <simon@mongocamp.dev>",
   "bugs": {
     "url": "https://github.com/MongoCamp/mongodb-github-action/issues"
