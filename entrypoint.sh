@@ -21,14 +21,14 @@ then
 fi
 
 if [[ ${MONGO_SHELL_COMMAND} != 'mongosh' ]]; then
-   MONGO_SHELL_COMMAND="${MONGO_SHELL_COMMAND} --quiet"
+   MONGO_SHELL_COMMAND="${MONGO_SHELL_COMMAND} --quiet "
 fi
 
 echo "Waiting for MongoDB to accept connections"
 sleep 1
 TIMER=0
 
-until docker exec --tty mongodb /bin/bash -c ""$MONGO_SHELL_COMMAND --port 27017 --eval "db.serverStatus() &> /dev/null"
+until docker exec --tty mongodb /bin/bash -c "$MONGO_SHELL_COMMAND --port 27017 --eval 'true'"
 do
   sleep 1
   echo "."
@@ -39,3 +39,5 @@ do
     exit 2
   fi
 done
+
+echo "Start you tests"
