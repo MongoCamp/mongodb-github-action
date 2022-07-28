@@ -1,3 +1,15 @@
+## [1.2.0](https://github.com/MongoCamp/mongodb-github-action/compare/1.1.0...1.2.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* check database is reachable ([e99146d](https://github.com/MongoCamp/mongodb-github-action/commit/e99146d301947392769a36e1805b166aa8bcb2cc))
+
+
+### Features
+
+* use different mongo shell commands ([f9e11a5](https://github.com/MongoCamp/mongodb-github-action/commit/f9e11a57f44803a16f36526f5d5ab63354beea2f))
+
 ## [1.1.0](https://github.com/MongoCamp/mongodb-github-action/compare/1.0.0...1.1.0) (2022-07-09)
 
 
