@@ -3,7 +3,7 @@
 ## Introduction
 This GitHub Action starts a MongoDB server with the default port `27017`. You can customize the port using the `mongodb-port` input.
 
-The version of the MongoDb server must be specified using the `mongodb-version` input. The used version must exist in the published [`mongocamp/mongodb` Docker hub tags](https://hub.docker.com/r/mongocamp/mongodb/tags). Default value is `latest`, other possible choices are `4.4.14`, or `5.0.9`.
+The version of the MongoDb server must be specified using the `mongodb-version` input. The used version must exist in the published [`mongocamp/mongodb` Docker hub tags](https://hub.docker.com/r/mongocamp/mongodb/tags). Default value is `latest`, other possible choices are `7.0`, or `8.0.11`.
 
 ## Usage
 ```yaml
