@@ -35,7 +35,7 @@ jobs:
       run: cd docker-mongodb/test; sbt test;
 
   start-all:
-    name: Run MongoDB Server ${{ matrix.mongodb-version }} p: ${{ matrix.mongodb-port }} user: ${{ matrix.montodb-username }}
+    name: Run MongoDB Server ${{ matrix.mongodb-version }} p: ${{ matrix.mongodb-port }} user: ${{ matrix.mongodb-username }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
