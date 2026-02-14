@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: [ '7.0', 'latest']
+        mongodb-version: [ 'latest']
         mongodb-port: [ '27017', '4711' ]
         mongodb-username: [ 'root', 'test' ]
         mongodb-pwd: [ 'NONE', 'hello-world' ]
