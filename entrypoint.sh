@@ -36,6 +36,9 @@ do
 
   if [[ $TIMER -eq 30 ]]; then
     echo "Did not initialize MongoDb within 30 seconds. Exit."
+    echo "---- docker logs mongodb ----"
+    docker logs mongodb
+    echo "------------------------------"
     exit 2
   fi
 done
